@@ -1,0 +1,31 @@
+<div th:replace="fragments/navbar"></div>
+
+<div class="dashboard-container">
+
+<h1>Lista Zawodnikow</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Imie</th>
+            <th>Nazwisko</th>
+            <th>Data Urodzenia</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${fighters.empty}">
+            <td colspan="2"> Brak zawodnikow! </td>
+        </tr>
+        <tr th:each="fighter : ${fighters}">
+            <td><span th:text="${fighter.name}"> Title </span></td>
+            <td><span th:text="${fighter.surname}"> Title </span></td>
+            <td><span th:text="${fighter.birthday}"> Author </span></td>
+        </tr>
+        </tbody>
+    </table>
+    <div th:replace="fragments/footer"></div>
+
+</div>
+
+
+</body>
+</html>

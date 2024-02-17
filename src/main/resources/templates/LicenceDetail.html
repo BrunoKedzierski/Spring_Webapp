@@ -1,0 +1,64 @@
+<div th:replace="fragments/navbar"></div>
+
+<div class="dashboard-container">
+
+
+    <div th:if="${LicenceError != null}">
+        <dialog open>
+            <p th:text="${LicenceError}"></p>
+            <form method="dialog">
+                <button>OK</button>
+            </form>
+        </dialog>
+    </div>
+
+    <div th:if="${LicenceSuccess != null}">
+        <dialog open>
+            <p th:text="${LicenceSuccess}"></p>
+            <form method="dialog">
+                <button>OK</button>
+            </form>
+        </dialog>
+    </div>
+
+    <div class="form-container">
+        <h1>Szczegoly licencji</h1>
+        <form  th:action="@{'/licencja'}" method="post"  th:object="${licence}" >
+            <label for="name">Imie</label>
+            <input type="text" id="name" th:value="${fighter.name}" disabled>
+
+            <label for="surname">Nazwisko</label>
+            <input type="text" id="surname" th:value="${fighter.surname}" disabled>
+
+            <label for="paymentId">Numer wplaty</label>
+            <input type="text" th:value="${licence.paymentConfirmationNo}" id="paymentId" disabled>
+
+            <label for="medicalId">Numer orzeczenia lekarskiego</label>
+            <input type="text" th:value="${licence.medicalRecordNo}"  id="medicalId" disabled>
+
+            <label for="status">Status:</label>
+            <select name="status" th:selected="${licence.status}" th:field="*{status}" id="status">
+                <option th:each="status: ${T(com.example.masproj.model.enums.LicenceStatus).values()}"
+                        th:value="${status}" th:text="${status}"></option>
+            </select>
+
+
+            <label for="beginsOn">Ważna od</label>
+            <input type="date" id="beginsOn" th:field="*{beginsOn}"  >
+
+            <label for="endsOn">Ważna do</label>
+            <input type="date" id="endsOn" th:field="*{endsOn}"  >
+
+            <input type="hidden" th:field="*{id}" />
+
+            <button type="submit" onclick="submitForm()">Aktualizuj</button>
+        </form>
+    </div>
+    <div th:replace="fragments/footer"></div>
+
+
+</div>
+
+
+</body>
+</html>

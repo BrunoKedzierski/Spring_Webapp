@@ -1,0 +1,59 @@
+<div th:replace="fragments/navbar"></div>
+
+<div class="dashboard-container">
+
+
+    <div th:if="${LicenceError != null}">
+        <dialog open>
+            <p th:text="${LicenceError}"></p>
+            <form method="dialog">
+                <button>OK</button>
+            </form>
+        </dialog>
+    </div>
+
+
+
+    <div th:if="${LicenceSuccess != null}">
+        <dialog open>
+            <p th:text="${LicenceSuccess}"></p>
+            <form method="dialog">
+                <button>OK</button>
+            </form>
+        </dialog>
+    </div>
+
+
+    <h1>Moje Licencje</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Status</th>
+            <th>Zgoda Lekarsa</th>
+            <th>Numer Platnosci</th>
+            <th>Wazna od</th>
+            <th>Wazna do</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${licences.empty}">
+            <td colspan="2"> Brak Licencji! </td>
+        </tr>
+        <tr th:each="licence : ${licences}">
+            <td><span th:text="${licence.status}"> Title </span></td>
+            <td><span th:text="${licence.medicalRecordNo}"> Title </span></td>
+            <td><span th:text="${licence.paymentConfirmationNo}"> Title </span></td>
+            <td><span th:text="${licence.beginsOn}"> Author </span></td>
+            <td><span th:text="${licence.endsOn}"> Author </span></td>
+        </tr>
+        </tbody>
+    </table>
+    <button class="option-button" onclick="location.href='/wystap'">Wystąp o licencje</button>
+
+    <div th:replace="fragments/footer"></div>
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<div class="header">
+    <a href="javascript:history.back()" class="previous round">&#8249;</a>
+    <button class="right-button" onclick="location.href='/menu'">Menu Glowne</button>
+    <p>Zalogowany jako <span sec:authentication="name"></span> <span sec:authentication="principal.authorities"></span></p>
+    <form name="logoutForm" th:action="@{/logout}" method="post">
+        <input class="btn" type="submit" value="wyloguj sie"/>
+    </form>
+</div>

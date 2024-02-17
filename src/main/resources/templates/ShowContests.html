@@ -1,0 +1,36 @@
+<div th:replace="fragments/navbar"></div>
+
+<div class="dashboard-container">
+
+
+    <h1>Lista Zawodow</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Nazwa zawodow</th>
+            <th>Adress</th>
+            <th>Data rozpoczecia</th>
+            <th>Data zakonczenia</th>
+            <th>Szczegoly</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${contests.empty}">
+            <td colspan="2"> Brak Zawodow </td>
+        </tr>
+        <tr th:each="contest : ${contests}">
+            <td><span th:text="${contest.name}"> Nazwa zawodow </span></td>
+            <td><span th:text="${contest.address}"> Adres </span></td>
+            <td><span th:text="${contest.beginOn}"> Data rozpoczecia </span></td>
+            <td><span th:text="${contest.endOn}"> Data zakonczenia </span></td>
+            <td><a th:href="@{'/zawody/'+ ${contest.id}}">Szczegoly</a></td>
+        </tr>
+        <!-- Add more rows here if needed -->
+        </tbody>
+    </table>
+    <div th:replace="fragments/footer"></div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<div th:replace="fragments/navbar"></div>
+
+<div class="dashboard-container">
+
+    <div th:if="${EntryError != null}">
+        <dialog open>
+            <p th:text="${EntryError}"></p>
+            <form method="dialog">
+                <button>OK</button>
+            </form>
+        </dialog>
+    </div>
+
+    <div th:if="${LicenceSuccess != null}">
+        <dialog open>
+            <p th:text="${LicenceError}"></p>
+            <form method="dialog">
+                <button>OK</button>
+            </form>
+        </dialog>
+    </div>
+
+    <div class="form-container-contest">
+        <h1>Szczegoly zawodow</h1>
+        <form th:action="@{/rejestruj}" method="post" th:object="${contest}">
+
+            <input type="hidden" id="id" th:value="${contest.id}" name="id">
+            <label for="name">Nazwa</label>
+            <input type="text" id="name" th:value="${contest.name}" name="name">
+
+            <label for="address">Adres</label>
+            <input type="text" id="address" th:value="${contest.address}" name="address">
+            <label for="beginOn">Zaczyna sie</label>
+            <input type="text" id="beginOn" th:value="${contest.beginOn}" name="beginOn">
+            <label for="endOn">Konczy sie</label>
+            <input type="text" id="endOn" th:value="${contest.endOn}" name="endOn">
+
+
+            <button type="submit">Zarejestruj sie</button>
+        </form>
+
+
+    </div>
+
+    <h1>Zarejestrowani zawodnicy</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Imie</th>
+            <th>Nazwisko</th>
+            <th>Data Urodzenia</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${fighters == null or fighters.empty}">
+            <td colspan="2"> Brak zawodników </td>
+        </tr>
+        <tr th:each="fighter : ${fighters}">
+            <td><span th:if="${fighter != null}" th:text="${fighter.name}"> Title </span></td>
+            <td><span th:if="${fighter != null}" th:text="${fighter.surname}"> Title </span></td>
+            <td><span th:if="${fighter != null}" th:text="${fighter.birthday}"> Author </span></td>
+        </tr>
+
+        </tbody>
+    </table>
+    <div th:replace="fragments/footer"></div>
+
+    <button class="btn"  onclick="history.back()">Powrot</button>
+</div>
+
+
+</body>
+</html>

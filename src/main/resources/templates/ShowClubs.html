@@ -1,0 +1,29 @@
+
+<div th:replace="fragments/navbar"></div>
+
+<div class="dashboard-container">
+
+    <h1>Lista Klubow</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Nazwa</th>
+            <th>Adres</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${clubs.empty}">
+            <td colspan="2"> Brak klubow! </td>
+        </tr>
+        <tr th:each="club : ${clubs}">
+            <td><span th:text="${club.name}"> Title </span></td>
+            <td><span th:text="${club.adress}"> Title </span></td>
+        </tr>
+        </tbody>
+    </table>
+    <div th:replace="fragments/Footer"></div>
+</div>
+
+
+</body>
+</html>

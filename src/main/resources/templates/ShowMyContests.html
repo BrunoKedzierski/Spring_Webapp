@@ -1,0 +1,53 @@
+<div th:replace="fragments/navbar"></div>
+
+<div class="dashboard-container">
+
+
+    <div th:if="${UnregisterError != null}">
+        <dialog open>
+            <p th:text="${UnregisterError}"></p>
+            <form method="dialog">
+                <button>OK</button>
+            </form>
+        </dialog>
+    </div>
+
+
+    <h1>Zawody na ktore jestes zapisany</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Nazwa zawodow</th>
+            <th>Adress</th>
+            <th>Data rozpoczecia</th>
+            <th>Data zakonczenia</th>
+            <th>Szczegoly</th>
+            <th>Wyrejestruj sie</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${contests.empty}">
+            <td colspan="2"> Nie jestes zapisany na zadne zawody! </td>
+        </tr>
+        <tr th:each="contest : ${contests}">
+            <td><span th:text="${contest.name}"> Nazwa </span></td>
+            <td><span th:text="${contest.address}"> Adres </span></td>
+            <td><span th:text="${contest.beginOn}"> Data rozpoczecia </span></td>
+            <td><span th:text="${contest.endOn}"> Data zakonczenia </span></td>
+            <td><a th:href="@{'/zawody/'+ ${contest.id}}">Szczegoly</a></td>
+            <td>
+                <form th:action="@{/wyrejestruj}" method="post">
+                    <input type="hidden" name="contestId" th:value="${contest.id}">
+                    <input class="btn" type="submit" value="Wyrejestruj się!">
+                </form>
+
+            </form></td>
+        </tr>
+        </tbody>
+    </table>
+    <div th:replace="fragments/footer"></div>
+</div>
+
+
+</body>
+</html>

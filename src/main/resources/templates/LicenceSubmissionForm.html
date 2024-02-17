@@ -1,0 +1,38 @@
+
+
+<div th:replace="fragments/navbar"></div>
+
+
+<div class="dashboard-container">
+  <div class="form-container">
+  <form name="f"  th:action="@{/wystap}" method="post"  th:object="${licence}">
+      <label for="paymentId">Numer wpłaty</label>
+      <input type="text" id="paymentId" th:field="*{paymentConfirmationNo}" required >
+
+      <label for="medicalId">Numer orzeczenia lekarskiego</label>
+      <input type="text" id="medicalId" th:field="*{medicalRecordNo}"  required >
+
+
+      <button type="submit" onclick="submitForm()">Wystąp o licencje</button>
+
+      <div th:if="${#fields.hasAnyErrors()}">
+          <ul>
+              <li th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+          </ul>
+      </div>
+    </form>
+
+  </div>
+    <div th:replace="fragments/footer"></div>
+
+
+</div>
+
+
+</body>
+</html>
+
+
+
+</body>
+</html>

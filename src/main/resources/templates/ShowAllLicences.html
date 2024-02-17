@@ -1,0 +1,43 @@
+<div th:replace="fragments/navbar"></div>
+
+<div class="dashboard-container">
+
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Status</th>
+            <th>Zgoda Lekarsa</th>
+            <th>Numer Platnosci</th>
+            <th>Wazna od</th>
+            <th>Wazna do</th>
+            <th>Szczegoly</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${licences.empty}">
+            <td colspan="2"> Brak Licencji! </td>
+        </tr>
+        <tr th:each="licence : ${licences}">
+            <td><span th:text="${licence.id}"> Title </span></td>
+            <td><span th:text="${licence.status}"> Title </span></td>
+            <td><span th:text="${licence.medicalRecordNo}"> Title </span></td>
+            <td><span th:text="${licence.paymentConfirmationNo}"> Title </span></td>
+            <td><span th:text="${licence.beginsOn}"> Author </span></td>
+            <td><span th:text="${licence.endsOn}"> Author </span></td>
+            <td><a th:href="@{'/licencja/'+ ${licence.id}}">Szczegoly</a></td>
+        </tr>
+        <!-- Add more rows here if needed -->
+        </tbody>
+    </table>
+    <div th:replace="fragments/footer"></div>
+    <button class="btn"  onclick="history.back()">Powrot</button>
+</div>
+
+
+>
+
+
+</body>
+</html>
